@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CoreRoleApplication",
+            "request": "launch",
+            "mainClass": "de.hska.iwi.vslab.Core_Role.CoreRoleApplication",
+            "projectName": "Core_Role"
+        }
+    ]
+}
