@@ -11,28 +11,28 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String typ;
+    private String type;
     private int level;
 
     protected Role() {
     }
 
-    public Role(String typ, int level) {
-        this.typ = typ;
+    public Role(String type, int level) {
+        this.type = type;
         this.level = level;
     }
 
     @Override
     public String toString() {
-        return String.format("Role[id=%d, typ='%s', level=%d]", id, typ, level);
+        return String.format("Role[id=%d, type='%s', level=%d]", id, type, level);
     }
 
     public int getId() {
         return id;
     }
 
-    public String getTyp() {
-        return typ;
+    public String getType() {
+        return type;
     }
 
     public int getLevel() {

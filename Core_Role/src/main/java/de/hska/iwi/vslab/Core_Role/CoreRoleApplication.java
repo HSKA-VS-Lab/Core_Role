@@ -1,6 +1,6 @@
 package de.hska.iwi.vslab.Core_Role;
 
-import de.hska.iwi.vslab.Core_Role.Interfaces.RoleDB_Repo;
+import de.hska.iwi.vslab.Core_Role.Interfaces.RoleRepository;
 import de.hska.iwi.vslab.Core_Role.Models.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class CoreRoleApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(RoleDB_Repo repository) {
+	public CommandLineRunner demo(RoleRepository repository) {
 		return (args) -> {
 			// save a few Roles
 			repository.save(new Role("admin", 0));

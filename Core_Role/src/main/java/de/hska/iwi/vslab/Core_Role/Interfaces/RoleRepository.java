@@ -4,9 +4,15 @@ import de.hska.iwi.vslab.Core_Role.Models.Role;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
-public interface RoleDB_Repo extends CrudRepository<Role, Long> {
+public interface RoleRepository extends CrudRepository<Role, Long> {
+
+    Role findById(int id);
+
+    Role findByType(String type);
 
     List<Role> findAll();
 
-    Role findById(int id);
+    long deleteById(int id);
+
+    long deleteByType(String type);
 }
