@@ -21,7 +21,7 @@ public class RoleController {
 
     @GetMapping("/role/{input}")
     public Role getRole(@PathVariable String input) {
-        // get by username
+        // get by type
         if(input.replaceAll("\\d","").length() > 0) // only digits in input
             return roleService.getRole(input);
             // get by id
