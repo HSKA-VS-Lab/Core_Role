@@ -2,11 +2,12 @@ package de.hska.iwi.vslab.Core_Role.Services;
 
 import de.hska.iwi.vslab.Core_Role.Interfaces.RoleRepository;
 import de.hska.iwi.vslab.Core_Role.Models.Role;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class RoleService {
@@ -14,9 +15,10 @@ public class RoleService {
     @Autowired
     RoleRepository roleRepo;
 
-    public List<Role> getAllRoles(){
-        List roles = new ArrayList<Role>();
-        roleRepo.findAll().forEach(roles::add);
+    public Role[] getAllRoles(){
+        List<Role> list = roleRepo.findAll();
+        Role[] roles = new Role[list.size()];
+        roles = list.toArray(roles);
         return roles;
     }
 

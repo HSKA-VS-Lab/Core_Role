@@ -2,11 +2,11 @@ package de.hska.iwi.vslab.Core_Role.Controllers;
 
 import de.hska.iwi.vslab.Core_Role.Models.Role;
 import de.hska.iwi.vslab.Core_Role.Services.RoleService;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 public class RoleController {
@@ -15,7 +15,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping("/role")
-    public List<Role> getAllRoles() {
+    public Role[] getAllRoles() {
         return roleService.getAllRoles();
     }
 
@@ -29,13 +29,13 @@ public class RoleController {
             return roleService.getRole(Integer.parseInt(input));
     }
 
-    @PostMapping("/role")
-    public void addRole(@RequestBody Role role) {
+    @PostMapping(path="/role", consumes="application/json")
+    public void addRole(@RequestBody(required=true) Role role) {
         roleService.addRole(role);
     }
 
-    @PutMapping("/role")
-    public void updateRole(@RequestBody Role role) {
+    @PutMapping(path="/role/{id}", consumes="application/json")
+    public void updateRole(@RequestBody(required=true) Role role) {
         roleService.updateRole(role);
     }
 
