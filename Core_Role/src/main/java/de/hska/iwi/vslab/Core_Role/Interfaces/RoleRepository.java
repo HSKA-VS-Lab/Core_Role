@@ -12,7 +12,7 @@ public interface RoleRepository extends CrudRepository<Role, Long> {
 
     List<Role> findAll();
 
-    long deleteById(int id);
+    int deleteById(int id);
 
-    long deleteByType(String type);
+    int deleteByType(String type);
 }

@@ -2,10 +2,10 @@ package de.hska.iwi.vslab.Core_Role.Controllers;
 
 import de.hska.iwi.vslab.Core_Role.Models.Role;
 import de.hska.iwi.vslab.Core_Role.Services.RoleService;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 
 @RestController
@@ -34,8 +34,8 @@ public class RoleController {
         roleService.addRole(role);
     }
 
-    @PutMapping(path="/role/{id}", consumes="application/json")
-    public void updateRole(@RequestBody(required=true) Role role) {
+    @RequestMapping(path="/role/{id}", method=RequestMethod.PUT, consumes="application/json")
+    public void updateRole(@PathVariable int id, @RequestBody(required=true) Role role) {
         roleService.updateRole(role);
     }
 

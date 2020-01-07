@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class RoleService {
 
@@ -35,17 +34,18 @@ public class RoleService {
     }
 
     public void updateRole(Role role){
+        System.out.println("THERE!!!!"+role);
         roleRepo.save(role);
     }
 
-    public long deleteAllRoles(){
-        long deleted = 0;
+    public void deleteAllRoles(){
         for(Role role: roleRepo.findAll())
-            deleted += roleRepo.deleteById(role.getId());
-        return deleted;
+            roleRepo.delete(role);
     }
 
-    public long deleteRole(int id){
-        return roleRepo.deleteById(id);
+    public void deleteRole(int id){
+        System.out.println("deleteRoleById: "+id);
+        Role role = roleRepo.findById(id);
+        roleRepo.delete(role);
     }
 }
