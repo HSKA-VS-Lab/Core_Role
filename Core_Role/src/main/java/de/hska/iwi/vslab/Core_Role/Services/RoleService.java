@@ -5,6 +5,9 @@ import de.hska.iwi.vslab.Core_Role.Models.Role;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ public class RoleService {
     @Autowired
     RoleRepository roleRepo;
 
+    @HystrixCommand(fallbackMethod = "getAllFallbackRoles")
     public Role[] getAllRoles(){
         List<Role> list = roleRepo.findAll();
         Role[] roles = new Role[list.size()];
@@ -48,4 +52,11 @@ public class RoleService {
         Role role = roleRepo.findById(id);
         roleRepo.delete(role);
     }
+
+    public Role[] getAllFallbackRoles(){
+        Role[] roles = new Role[2];
+        roles[0] = new Role("admin", 0);
+        roles[1] = new Role("user", 1);
+        return roles;
+    } 
 }

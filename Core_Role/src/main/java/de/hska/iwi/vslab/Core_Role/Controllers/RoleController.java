@@ -5,10 +5,12 @@ import de.hska.iwi.vslab.Core_Role.Services.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@EnableCircuitBreaker
 public class RoleController {
 
     @Autowired
