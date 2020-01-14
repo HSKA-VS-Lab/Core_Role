@@ -1,7 +1,6 @@
 package de.hska.iwi.vslab.Core_Role.Controllers;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import de.hska.iwi.vslab.Core_Role.Models.Role;
 import de.hska.iwi.vslab.Core_Role.Services.RoleService;
 import org.slf4j.Logger;
@@ -9,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.dao.EmptyResultDataAccessException;
 
 
 @RestController
@@ -21,17 +19,15 @@ public class RoleController {
 
     @GetMapping("/role")
     @HystrixCommand(fallbackMethod = "getFallbackRoles")
-    public Role[] getAllRoles() throws EmptyResultDataAccessException
+    public Role[] getAllRoles()
     {
         try
         {
             return roleService.getAllRoles();
         } catch (
-                EmptyResultDataAccessException e) {
+                Exception e) {
             return null;
         }
-        // return roleService.getAllRoles();
-        //throw new RuntimeException("Throwing exception deliberately for asynchronous testing");
     }
 
     public Role[] getFallbackRoles() {
