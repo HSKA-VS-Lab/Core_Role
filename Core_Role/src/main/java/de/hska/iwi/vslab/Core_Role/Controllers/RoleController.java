@@ -1,6 +1,7 @@
 package de.hska.iwi.vslab.Core_Role.Controllers;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import de.hska.iwi.vslab.Core_Role.Models.Role;
 import de.hska.iwi.vslab.Core_Role.Services.RoleService;
 import org.slf4j.Logger;
@@ -20,20 +21,22 @@ public class RoleController {
 
     @GetMapping("/role")
     @HystrixCommand(fallbackMethod = "getFallbackRoles")
-    public Role[] getAllRoles() {
-        /* try
+    public Role[] getAllRoles() throws EmptyResultDataAccessException
+    {
+        try
         {
             return roleService.getAllRoles();
         } catch (
                 EmptyResultDataAccessException e) {
             return null;
-        } */
-        return roleService.getAllRoles();
+        }
+        // return roleService.getAllRoles();
+        //throw new RuntimeException("Throwing exception deliberately for asynchronous testing");
     }
 
     public Role[] getFallbackRoles() {
-        Role role1 = new Role("admin",0);
-        Role role2 = new Role("user",1);
+        Role role1 = new Role("adminFallback",0);
+        Role role2 = new Role("userFallback",1);
         Role[] roleA = new Role[2];
         roleA[0] = role1;
         roleA[1] = role2;
