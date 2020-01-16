@@ -40,7 +40,7 @@ public class RoleController {
     }
 
     @GetMapping("/role/{input}")
-    @HystrixCommand(fallbackMethod = "fallbackGetRole")
+    //@HystrixCommand(fallbackMethod = "fallbackGetRole")
     public Role getRole(@PathVariable String input) {
         // get by type
         if(input.replaceAll("\\d","").length() > 0) // only digits in input
@@ -56,7 +56,7 @@ public class RoleController {
     }
 
     @PostMapping(path="/role", consumes="application/json")
-    @HystrixCommand(fallbackMethod = "fallbackAddRole")
+    //@HystrixCommand(fallbackMethod = "fallbackAddRole")
     public void addRole(@RequestBody(required=true) Role role) {
         roleService.addRole(role);
     }
@@ -67,19 +67,19 @@ public class RoleController {
     }
 
     @RequestMapping(path="/role/{id}", method=RequestMethod.PUT, consumes="application/json")
-    @HystrixCommand(fallbackMethod = "defaultFallbackWithId")
+    //@HystrixCommand(fallbackMethod = "defaultFallbackWithId")
     public void updateRole(@PathVariable int id, @RequestBody(required=true) Role role) {
         roleService.updateRole(role);
     }
 
     @DeleteMapping("/role/{id}")
-    @HystrixCommand(fallbackMethod = "defaultFallbackWithId")
+    //@HystrixCommand(fallbackMethod = "defaultFallbackWithId")
     public void deleteRole(@PathVariable int id){
         roleService.deleteRole(id);
     }
 
     @DeleteMapping("/role")
-    @HystrixCommand(fallbackMethod = "defaultFallback")
+    //@HystrixCommand(fallbackMethod = "defaultFallback")
     public void deleteRole(){
         roleService.deleteAllRoles();
     }
